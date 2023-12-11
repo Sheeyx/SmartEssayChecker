@@ -9,4 +9,5 @@ public class User
     public string Name { get; set; }
     [JsonIgnore]
     public List<Essay> Essays { get; set; }
+    
 }
