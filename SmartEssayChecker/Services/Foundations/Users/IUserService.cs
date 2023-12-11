@@ -4,5 +4,5 @@ namespace SmartEssayChecker.Services.Foundations.Users;
 
 public interface IUserService
 {
-    ValueTask<User> InsertUserAsync(User user);
+    ValueTask<User> AddUserAsync(User user);
 }
