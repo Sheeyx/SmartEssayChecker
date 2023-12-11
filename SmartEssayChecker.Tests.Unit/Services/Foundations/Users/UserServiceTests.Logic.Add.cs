@@ -23,7 +23,7 @@ public partial class UserServiceTests
 
         // when
         User actualUser = await this.userService
-            .InsertUserAsync(inputUser);
+            .AddUserAsync(inputUser);
 
 
         // then
