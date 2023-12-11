@@ -1,10 +1,11 @@
 // ===================================================
 // Copyright (c) Coalition of Good-Hearted programmers
-// Developed by Cash Overflow devs
+// Developed by SmartEssayChecker devs
 // ===================================================
 
 
 using Microsoft.OpenApi.Models;
+using SmartEssayChecker.Brokers.Storages;
 
 namespace SmartEssayChecker;
 
@@ -19,7 +20,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-            
+
+        services.AddDbContext<StorageBroker>();
+        
         services.AddSwaggerGen(config =>
         {
             config.SwaggerDoc(
