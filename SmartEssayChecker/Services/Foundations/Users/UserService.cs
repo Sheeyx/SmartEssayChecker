@@ -5,7 +5,7 @@ using SmartEssayChecker.Services.Foundations.Users.Exceptions;
 
 namespace SmartEssayChecker.Services.Foundations.Users;
 
-public class UserService : IUserService
+public partial class UserService : IUserService
 {
     private IStorageBroker storageBroker;
     private ILoggingBroker loggingBroker;
@@ -16,25 +16,11 @@ public class UserService : IUserService
         this.loggingBroker = loggingBroker;
     }
 
-    public async ValueTask<User> AddUserAsync(User user)
-    {
-        try
+    public ValueTask<User> AddUserAsync(User user) =>
+        TryCatch(async () =>
         {
-            if (user is null)
-            {
-                throw new NullUserException();
-            }
+            ValidateUserOnAdd(user);
             return await this.storageBroker.InsertUserAsync(user);
-        }
-        catch (NullUserException nullUserException)
-        {
-            var userValidationException =
-                new UserValidationException(nullUserException);
+        });
 
-            this.loggingBroker.LogError(userValidationException);
-
-            throw userValidationException;
-        }
-    }
-        
 }
