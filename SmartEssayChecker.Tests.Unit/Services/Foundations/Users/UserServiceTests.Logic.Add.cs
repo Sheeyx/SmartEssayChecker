@@ -31,6 +31,8 @@ public partial class UserServiceTests
         
         this.storageBrokerMock.Verify(broker => 
             broker.InsertUserAsync(inputUser), Times.Once);
+        
         this.storageBrokerMock.VerifyNoOtherCalls();
+        this.loggingBrokerMock.VerifyNoOtherCalls();
     }
 }
